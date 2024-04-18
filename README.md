@@ -78,8 +78,7 @@ Matlab Stepper allows to run through the simulation at specific time intervales 
 
 Note that it is necessary to set the following parameters in the assertion block (double click on the block ): Simulation callback when assertion fail = `set_param(bdroot,'SimulationCommand','pause')`
 
-# Example
-An example using a functioning simulation can be viewed in [Thimyo training using RL](https://github.com/Spinkoo/Matlab2TorchRL/blob/main/gyms/envs/test.py)
+# How to use
 
 ## Retrieving Runtime Attributes
 To retrieve runtime attributes, such as sensor readings from a robot, you need to define a Display Block in your MATLAB Simulink model. This block will be used to display the data you want to access from Python.
@@ -122,3 +121,8 @@ Example Usage :
 **Assuming ```step_time``` is a variable that was initialized in your workspace and is to be updated in your simulation calculations**
 
 ```engine.set_param('step_time', 0.1)```
+
+
+# Example
+
+An example using a functioning simulation can be viewed in [Thimyo training using RL](https://github.com/Spinkoo/Matlab2TorchRL/blob/main/gyms/envs/test.py)
