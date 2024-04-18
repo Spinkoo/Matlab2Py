@@ -40,7 +40,8 @@ The `Engine` class constructor accepts several parameters that configure its beh
 
 To use the `Engine` class, you first need to create an instance of the class, passing the appropriate parameters to the constructor. Once the instance is created, you can use its methods to control the simulation. Here's a basic example:
 
-```from mat_engine import Engine
+```
+from mat_engine import Engine
 
 Initialize the engine with the path to the model and simulation files
 engine = Engine(model_path='path/to/model.slx', sim_path='path/to/simulation/files')
