@@ -119,7 +119,7 @@ The ```set_param``` method allows you to dynamically modify simulation parameter
 Example Usage :
 
 **Assuming ```Vg``` is a parameter that was initialized in your workspace and is to be updated in your simulation calculations (defined as constant block in simulink)**
-<p align="center"><img src="images/constant.png"></p>
+<p align="center"><img src="images/constant.PNG"></p>
 
 ```engine.set_param('Vg', 0.1)```
 
