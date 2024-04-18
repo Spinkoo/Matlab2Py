@@ -1,11 +1,6 @@
 # Matlab2Py
 Python interface with Matlab simulations at <b>Runtime</b>
 
-
-
-## Matlab engine (`mat_engine.py`)
-`mat_engine.py` is a Python controller. It is an interface that connects a Python environment to a Matlab simulation, allowing for the execution of Matlab scripts and the retrieval of simulation data directly from Python during Runtime with different modes.
-
 # Matlab Engine Wrapper for Python
 
 This repository contains a Python wrapper for the MATLAB Engine API, designed to facilitate the integration of MATLAB simulations into Python applications. The primary component of this repository is the `Engine` class, which provides a high-level interface for controlling MATLAB simulations from Python. This README provides an overview of the repository's functionality and explains the parameters used by the `Engine` class.
