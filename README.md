@@ -2,8 +2,9 @@
 Python interface with Matlab simulations at <b>Runtime</b>
 
 # Matlab Engine Wrapper for Python
-
 This repository contains a Python wrapper for the MATLAB Engine API, designed to facilitate the integration of MATLAB simulations into Python applications. The primary component of this repository is the `Engine` class, which provides a high-level interface for controlling MATLAB simulations from Python. This README provides an overview of the repository's functionality and explains the parameters used by the `Engine` class.
+<p align="center"><img src="images/matlab2python.jpg"></p>
+
 
 ## Overview
 
@@ -65,7 +66,8 @@ engine.stop_simulation()
 ```
 
 # Setup Timeout and Stepper blocks in Matlab
-![](images/interface_block.png)
+<p align="center"><img src="images/interface_block.png"></p>
+
 
 ## Matlab timeout
 The simplest way to set a tuneable timeout is to add a binary comparison block connected to your clock that'll be periodically compared to the max_sim_time (the name of the variable can be set progrmatically if you prefer otherwise)
@@ -77,4 +79,4 @@ Matlab Stepper allows to run through the simulation at specific time intervales 
 Note that it is necessary to set the following parameters in the assertion block (double click on the block ): Simulation callback when assertion fail = `set_param(bdroot,'SimulationCommand','pause')`
 
 # Example
-An example using a functioning simulation can be viewed in [Thimyo training using RL](https://github.com/Spinkoo/Matlab2TorchRL/blob/main/gyms/envs/Matlab2Py/test.py)
+An example using a functioning simulation can be viewed in [Thimyo training using RL](https://github.com/Spinkoo/Matlab2TorchRL/blob/main/gyms/envs/test.py)
