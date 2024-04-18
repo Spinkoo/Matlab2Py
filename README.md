@@ -16,7 +16,7 @@ The simulation parameters and signals can be accessed through three modes :
 
 - `'sbs'`: Step by Step simulation. This mode allows for detailed control over the simulation, stepping through it one step at a time.
 - `'sparsesbs'`: Sparse Step by Step simulation. This mode skips certain steps if they are deemed unnecessary, potentially speeding up the simulation.
-- `'normal'`: Normal simulation mode. This mode runs the simulation without any step-by-step control and the results should be retrived by the user afterwards. 
+- `'normal'`: Normal simulation mode. This mode runs the simulation without any step-by-step control and the results should be retrieved by the user afterwards. 
 ## Setup 
 
 [Install Matlab engine for Python](https://fr.mathworks.com/help/matlab/matlab_external/get-started-with-matlab-engine-for-python.html)
@@ -80,3 +80,45 @@ Note that it is necessary to set the following parameters in the assertion block
 
 # Example
 An example using a functioning simulation can be viewed in [Thimyo training using RL](https://github.com/Spinkoo/Matlab2TorchRL/blob/main/gyms/envs/test.py)
+
+## Retrieving Runtime Attributes
+To retrieve runtime attributes, such as sensor readings from a robot, you need to define a Display Block in your MATLAB Simulink model. This block will be used to display the data you want to access from Python.
+
+Steps to Add a Display Block
+- Add a Display Block: In your MATLAB Simulink model, add a Display block. This block will be used to display the data you want to access from Python.
+- Connect the Display Block: Connect the output of the sensor or the block whose data you want to access to the input of the Display block.
+- Configure the Display Block: In the Display block's properties, ensure that it is configured to display the data you're interested in. You might need to adjust the data format or the update frequency depending on your requirements.
+- Accessing the Data from Python: In your Python code, use the get_runtime_attribute method of the Engine class to access the data displayed by the Display block. You'll need to specify the path to the Display block in your Simulink model and the name of the attribute you want to access.
+
+Example Usage :
+
+**Assuming 'robot_readings' is the name of the Display block in your Simulink model**
+
+```readings = engine.get_runtime_attribute('robot_readings', block_path='/Sensor/Display')```
+
+## Retrieving Final Simulation Outputs
+To retrieve the final output of the simulation, such as the simulation status or specific simulation variables, you need to define a "To Workspace" Block in your MATLAB Simulink model. This block will store the data you want to access in the MATLAB workspace.
+
+Steps to Add a "To Workspace" Block
+- Add a "To Workspace" Block: In your MATLAB Simulink model, add a "To Workspace" block. This block will be used to store the data you want to access from Python.
+- Connect the "To Workspace" Block: Connect the output of the block whose data you want to store to the input of the "To Workspace" block.
+- Configure the "To Workspace" Block: In the "To Workspace" block's properties, specify the variable name under which the data will be stored in the MATLAB workspace.
+- Accessing the Data from Python: In your Python code, use the get_simout method of the Engine class to access the data stored by the "To Workspace" block. You'll need to specify the name of the variable you used in the "To Workspace" block.
+
+Example Usage :
+
+**Assuming 'simout' is the name of the variable you used in the "To Workspace" block**
+
+```sim_output = engine.get_simout('simout')```
+
+By following these steps, you can set up your MATLAB simulation to allow the Python interface to access runtime attributes and final simulation outputs
+
+## Updating simulation parameters during Runtime
+
+The ```set_param``` method allows you to dynamically modify simulation parameters in your MATLAB Simulink model from Python during Runtime (inside an iterative training loop for example)
+
+Example Usage :
+
+**Assuming ```step_time``` is a variable that was initialized in your workspace and is to be updated in your simulation calculations**
+
+```engine.set_param('step_time', 0.1)```

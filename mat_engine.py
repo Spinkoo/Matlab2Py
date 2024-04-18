@@ -119,7 +119,7 @@ class Engine:
             self.stop_simulation()  
             return -1
     
-    # Get simulation output
+    # Get simulation output (define "To workspace" block to which you connect the required outputs)
 
     def get_simout(self, ws = 'base'):
         return self.get_simulation_last_readings('simout', ws)
