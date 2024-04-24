@@ -1,5 +1,5 @@
-from engine_wrapper_mat import Engine
 import numpy as np
+from .engine_wrapper_mat import Engine
 
 #to add in the assertion params
 #set_param(bdroot,'SimulationCommand','pause'), disp(sprintf('\nSimulation paused.'))
@@ -71,6 +71,7 @@ class OnlineEngine(Engine):
             self.eng.workspace['br'] = br
             return self.eng.eval(f"br.{'InputPort' if inport else 'OutpotPort'}({port}).data") # Access displayed  data
         except Exception as e:
+            print(e)
             self.stop_simulation()  
             return -1
  
