@@ -66,7 +66,7 @@ class OnlineEngine(Engine):
     def get_runtime_attribute(self, attribute : str, block_path : str, inport = True, port = 1, param_name = 'RuntimeObject'):
         assert self.sim_type != "normal", "Can't access Runtime attributes after the simulation is finished" 
         try:
-            br = self.get_param(f'{block_path}/{attribute}', param_name)
+            br = self.get_param(f'{block_path}{attribute}', param_name)
             #time.sleep(.01)
             self.eng.workspace['br'] = br
             return self.eng.eval(f"br.{'InputPort' if inport else 'OutpotPort'}({port}).data") # Access displayed  data
