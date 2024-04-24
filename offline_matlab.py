@@ -1,13 +1,11 @@
 import numpy as np
-from engine_wrapper_mat import Engine
+from .engine_wrapper_mat import Engine
 
 #to add in the assertion params
 #set_param(bdroot,'SimulationCommand','pause'), disp(sprintf('\nSimulation paused.'))
 #Simulation path
 
-SIMULATION_PATH = 'Modele_Pendule_Primaire_V2/'
-MODEL_PATH = f"{SIMULATION_PATH}Mvt_Horizontal_Pendule_Simple_2023a.slx"
-model_name = 'Mvt_Horizontal_Pendule_Simple_2023a'
+
 
 
 
@@ -62,6 +60,10 @@ class OfflineEngine(Engine):
 if __name__ == '__main__':
 
     #Debugging
+
+    SIMULATION_PATH = 'Modele_Pendule_Primaire_V2/'
+    MODEL_PATH = f"{SIMULATION_PATH}Mvt_Horizontal_Pendule_Simple_2023a.slx"
+    model_name = 'Mvt_Horizontal_Pendule_Simple_2023a'
     eng = OfflineEngine(model_path = MODEL_PATH, sim_path = SIMULATION_PATH, model_name = model_name,)
     eng.load_engine()
 
