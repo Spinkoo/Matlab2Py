@@ -1,34 +1,40 @@
 # Matlab2Py
-Python interface with Matlab simulations at <b>Runtime</b>
+Python interface with Matlab simulations at <b>Runtime</b> or <b>Offline</b>
 
 # Matlab Engine Wrapper for Python
-This repository contains a Python wrapper for the MATLAB Engine API, designed to facilitate the integration of MATLAB simulations into Python applications. The primary component of this repository is the `Engine` class, which provides a high-level interface for controlling MATLAB simulations from Python. This README provides an overview of the repository's functionality and explains the parameters used by the `Engine` class.
+This repository contains a Python wrapper for the MATLAB Engine API, designed to facilitate the integration of MATLAB simulations into Python applications. Both the Online & Offline wrappers provide a high-level interface for controlling MATLAB simulations from Python. This README provides an overview of the repository's functionality and explains the possible configurations.
 <p align="center"><img src="images/matlab2python.jpg"></p>
 
 
 ## Overview
 
-The `Engine` class is designed to abstract away the complexities of interacting with MATLAB simulations, allowing Python developers to control and manipulate MATLAB simulations with ease. It provides methods for starting, pausing, stepping through, and stopping simulations, as well as accessing and modifying simulation parameters.
+The `OnlineEngine` & `OfflineEngine` classes are designed to abstract away the complexities of interacting with MATLAB simulations, allowing Python developers to control and manipulate MATLAB simulations with ease. It provides methods for starting, pausing, stepping through, and stopping simulations, as well as accessing and modifying simulation parameters.
 
-### Interface mode 
+### Interface mode : 
+**Two main usecases are covered by this repo**
 
-The simulation parameters and signals can be accessed through three modes : 
+<b>1- Runtime or Online Engine :</b>
+The simulation parameters and signals can be accessed through two modes : 
 
 - `'sbs'`: Step by Step simulation. This mode allows for detailed control over the simulation, stepping through it one step at a time.
 - `'sparsesbs'`: Sparse Step by Step simulation. This mode skips certain steps if they are deemed unnecessary, potentially speeding up the simulation.
-- `'normal'`: Normal simulation mode. This mode runs the simulation without any step-by-step control and the results should be retrieved by the user afterwards. 
+
+<b>2- Offline Engine :</b>
+This allows for the complete execution of the simulation followed by retrieving the output
 ## Setup 
 
 [Install Matlab engine for Python](https://fr.mathworks.com/help/matlab/matlab_external/get-started-with-matlab-engine-for-python.html)
 
+**NOTE for your matlabengine you need to install the python package matlabengine<=9.14.6**
+
 Run ```python -m pip install -r requirements.txt```
 ## Engine Parameters
 
-The `Engine` class constructor accepts several parameters that configure its behavior. Here's a brief explanation of each:
+The `Online Engine` class constructor accepts several parameters that configure its behavior. Here's a brief explanation of each:
 
 - `model_path`: The path to the MATLAB model file (.slx file) that contains the simulation to be controlled.
 - `sim_path`: The path to the directory containing the simulation files. This is where the MATLAB Engine will look for the model file and any other necessary files.
-- `model_name` (default: 'Trolley'): The name of the MATLAB model to be loaded. This is used to reference the model within the MATLAB Engine.
+- `model_name` : The name of the MATLAB model to be loaded. This is used to reference the model within the MATLAB Engine.
 - `matlab_stepper` (default: 'step_time'): The name of the MATLAB block that controls the simulation's step size. This is used to advance the simulation one step at a time ([See How to set a stepper](#matlab-stepper)).
 - `simulation_type` (default: 'sbs'): The type of simulation to run. The supported types are:
     - `'sbs'`: Step by Step simulation. This mode allows for detailed control over the simulation, stepping through it one step at a time.
@@ -36,34 +42,12 @@ The `Engine` class constructor accepts several parameters that configure its beh
     - `'normal'`: Normal simulation mode. This mode runs the simulation without any step-by-step control and the results should be retrived by the user afterwards.
 - `max_steps`: This parameter sets the maximum number of steps for the simulation. It acts as a sort of timeout, preventing the simulation from running indefinitely. This is particularly useful in scenarios where you want to limit the simulation to a certain number of iterations for testing or debugging purposes([See How to set a timeout](#matlab-timeout)).
 
+The `Offline Engine` class constructor is limited to :
 
-## Usage
+- `model_path`
+- `sim_path`
+- `model_name` 
 
-To use the `Engine` class, you first need to create an instance of the class, passing the appropriate parameters to the constructor. Once the instance is created, you can use its methods to control the simulation. Here's a basic example:
-
-```
-from mat_engine import Engine
-
-Initialize the engine with the path to the model and simulation files
-engine = Engine(model_path='path/to/model.slx', sim_path='path/to/simulation/files')
-
-#Set parameters
-
-Load the simulation
-engine.load_engine()
-
-Start the simulation
-engine.start_simulation()
-
-Pause the simulation
-engine.pause_simulation()
-
-Step through the simulation
-engine.step_forward()
-
-Stop the simulation
-engine.stop_simulation()
-```
 
 # Setup Timeout and Stepper blocks in Matlab
 <p align="center"><img src="images/interface_block.png"></p>
@@ -127,4 +111,8 @@ Example Usage :
 
 # Example
 
-An example using a functioning simulation can be viewed in [Thimyo training using RL](https://github.com/Spinkoo/Matlab2TorchRL/blob/main/gyms/envs/test.py)
+An example using a functioning simulation can be viewed in 
+
+- [Thimyo training using RL (Online)](https://github.com/Spinkoo/Matlab2TorchRL/blob/main/gyms/envs/test.py)
+
+- [Simulation based inference (Offline)](https://github.com/Spinkoo/Simulink-based-inference)
