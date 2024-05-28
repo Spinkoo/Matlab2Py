@@ -116,3 +116,7 @@ An example using a functioning simulation can be viewed in
 - [Thimyo training using RL (Online)](https://github.com/Spinkoo/Matlab2TorchRL/blob/main/gyms/envs/test.py)
 
 - [Simulation based inference (Offline)](https://github.com/Spinkoo/Simulink-based-inference)
+
+## Acknowledgments
+
+- This work was supported by the French National Research Agency under the France 2030 program project IRT Nanoelec (ANR-10-AIRT-05).
