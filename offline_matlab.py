@@ -1,5 +1,5 @@
 import numpy as np
-from engine_wrapper_mat import Engine
+from .engine_wrapper_mat import Engine
 
 #to add in the assertion params
 #set_param(bdroot,'SimulationCommand','pause'), disp(sprintf('\nSimulation paused.'))
